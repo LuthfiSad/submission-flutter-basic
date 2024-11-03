@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:submission_flutter/model/product_model.dart';
+import 'package:submission_flutter/screens/main_manu_screen.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   final Product product;
@@ -71,7 +72,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                           fontWeight: FontWeight.bold)),
 
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Row(
                                         children: [
@@ -162,6 +164,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                     ),
 
                                   // Tab Navigation for Description and Reviews
+                                      SizedBox(height: 8),
                                   Row(
                                     children: [
                                       _buildTabButton(
@@ -240,12 +243,33 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     padding: EdgeInsets.all(16),
-                                    backgroundColor: Colors.blue,
+                                    backgroundColor:
+                                        Theme.of(context).colorScheme.onSurface,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    showDialog(
+                                        context: context,
+                                        builder: (builder) => AlertDialog(
+                                              title: Text("Masuk keranjang Berhasil"),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            MainMenuScreen(),
+                                                      ),
+                                                    );
+                                                  },
+                                                  child: Text("Kembali"),
+                                                ),
+                                              ],
+                                            ));
+                                  },
                                   child: Text("Add to cart",
                                       style: TextStyle(color: Colors.white)),
                                 ),
@@ -291,7 +315,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: isActive ? Colors.blue : Colors.grey[300],
+          color: isActive
+              ? Theme.of(context).colorScheme.onSurface
+              : Colors.grey[300],
         ),
         child: Text(
           title,
