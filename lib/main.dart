@@ -8,6 +8,8 @@ import 'package:submission_flutter/example/todo_app.dart';
 import 'package:submission_flutter/example/todo_app2.dart';
 import 'package:submission_flutter/example/topbottom.dart';
 import 'package:submission_flutter/example/wallet.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:submission_flutter/screens/main_manu_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -20,6 +22,14 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Submission Flutter',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color.fromARGB(255, 123, 255, 16),
+        ),
+        textTheme: GoogleFonts.montserratTextTheme(),
+        useMaterial3: true,
+      ),
       // home: TodoAppPage(),
       // home: LoginPage(),
       // home: DrawerPage(),
@@ -28,7 +38,8 @@ class MainApp extends StatelessWidget {
       // home: WalletPage(),
       // home: SearchPage(),
       // home: ListGalerry(),
-      home: SliderPage(),
+      // home: SliderPage(),
+      home: const MainMenuScreen(),
     );
   }
 }
