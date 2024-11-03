@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:submission_flutter/model/product_model.dart';
+import 'package:submission_flutter/screens/detail_screen.dart';
 
 // Page 1
 class HomeScreen extends StatefulWidget {
@@ -223,91 +224,101 @@ class SuggestionItemCard extends StatelessWidget {
         color: Colors.grey[300],
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Expanded(
-            child: ClipRRect(
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(10),
-              ),
-              child: Image.network(
-                product.image,
-                width: double.infinity,
-                fit: BoxFit.cover,
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ProductDetailScreen(product: product),
+            ),
+          );
+        },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Expanded(
+              child: ClipRRect(
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(10),
+                ),
+                child: Image.network(
+                  product.image,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  product.title,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    product.title,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 2, // Membatasi teks hingga 3 baris
+                    overflow: TextOverflow
+                        .ellipsis, // Menambahkan "..." jika teks terlalu panjang
                   ),
-                  maxLines: 2, // Membatasi teks hingga 3 baris
-                  overflow: TextOverflow
-                      .ellipsis, // Menambahkan "..." jika teks terlalu panjang
-                ),
-                Row(
-                  children: [
-                    Stack(
-                      children: [
-                        Icon(Icons.star, size: 20, color: Colors.grey[400]),
-                        ClipRect(
-                          child: Align(
-                            alignment: Alignment.topLeft,
-                            widthFactor:
-                                starFillRatio, // Mengisi bintang sesuai rating
-                            child: Icon(Icons.star,
-                                size: 20, color: Colors.yellow),
+                  Row(
+                    children: [
+                      Stack(
+                        children: [
+                          Icon(Icons.star, size: 20, color: Colors.grey[400]),
+                          ClipRect(
+                            child: Align(
+                              alignment: Alignment.topLeft,
+                              widthFactor:
+                                  starFillRatio, // Mengisi bintang sesuai rating
+                              child: Icon(Icons.star,
+                                  size: 20, color: Colors.yellow),
+                            ),
                           ),
+                        ],
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        '$rating/5.0',
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey,
                         ),
-                      ],
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      '$rating/5',
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey,
                       ),
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      // '(${product.ratingCount})',
-                      '(10)',
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey,
+                      const SizedBox(width: 4),
+                      Text(
+                        // '(${product.ratingCount})',
+                        '(10)',
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey,
+                        ),
                       ),
+                    ],
+                  ),
+                  Text(
+                    'Stock: ${product.stock}',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.grey[700],
                     ),
-                  ],
-                ),
-                Text(
-                  'Stock: ${product.stock}',
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey[700],
                   ),
-                ),
-                Text(
-                  'Rp ${product.price}',
-                  style: const TextStyle(
-                    fontSize: 14,
-                    color: Colors.green,
-                    fontWeight: FontWeight.bold,
+                  Text(
+                    'Rp ${product.price}',
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Colors.green,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
