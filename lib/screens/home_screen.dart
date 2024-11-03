@@ -143,7 +143,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: _isLoading
-                        ? Container(width: 28, height: 28, padding: EdgeInsets.all(8),child: const CircularProgressIndicator(color: Colors.white,))
+                        ? Container(
+                            width: 28,
+                            height: 28,
+                            padding: EdgeInsets.all(8),
+                            child: const CircularProgressIndicator(
+                              color: Colors.white,
+                            ))
                         : const Icon(Icons.search,
                             size: 28, color: Colors.white)),
               ),
@@ -151,17 +157,88 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           const SizedBox(height: 40),
           if (filteredProducts.isNotEmpty) ...[
-            GridView.count(
-              crossAxisCount: 2,
-              shrinkWrap: true,
-              childAspectRatio: 0.63,
-              mainAxisSpacing: 15.0,
-              crossAxisSpacing: 15.0,
-              physics: const NeverScrollableScrollPhysics(),
-              children: filteredProducts.map((product) {
-                return SuggestionItemCard(product: product);
-              }).toList(),
-            )
+            LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+              if (constraints.maxWidth < 300) {
+                return GridView.count(
+                  crossAxisCount: 1,
+                  shrinkWrap: true,
+                  childAspectRatio: 0.63,
+                  mainAxisSpacing: 15.0,
+                  crossAxisSpacing: 15.0,
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: filteredProducts.map((product) {
+                    return SuggestionItemCard(
+                        crossAxixCount: 1, product: product);
+                  }).toList(),
+                );
+              } else if (constraints.maxWidth < 400) {
+                return GridView.count(
+                  crossAxisCount: 2,
+                  shrinkWrap: true,
+                  childAspectRatio: 0.63,
+                  mainAxisSpacing: 15.0,
+                  crossAxisSpacing: 15.0,
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: filteredProducts.map((product) {
+                    return SuggestionItemCard(
+                        crossAxixCount: 1, product: product);
+                  }).toList(),
+                );
+              } else if (constraints.maxWidth < 600) {
+                return GridView.count(
+                  crossAxisCount: 3,
+                  shrinkWrap: true,
+                  childAspectRatio: 0.63,
+                  mainAxisSpacing: 15.0,
+                  crossAxisSpacing: 15.0,
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: filteredProducts.map((product) {
+                    return SuggestionItemCard(
+                        crossAxixCount: 1, product: product);
+                  }).toList(),
+                );
+              } else if (constraints.maxWidth < 800) {
+                return GridView.count(
+                  crossAxisCount: 4,
+                  shrinkWrap: true,
+                  childAspectRatio: 0.63,
+                  mainAxisSpacing: 15.0,
+                  crossAxisSpacing: 15.0,
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: filteredProducts.map((product) {
+                    return SuggestionItemCard(
+                        crossAxixCount: 1, product: product);
+                  }).toList(),
+                );
+              } else if (constraints.maxWidth < 1000) {
+                return GridView.count(
+                  crossAxisCount: 5,
+                  shrinkWrap: true,
+                  childAspectRatio: 0.63,
+                  mainAxisSpacing: 15.0,
+                  crossAxisSpacing: 15.0,
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: filteredProducts.map((product) {
+                    return SuggestionItemCard(
+                        crossAxixCount: 1, product: product);
+                  }).toList(),
+                );
+              } else {
+                return GridView.count(
+                  crossAxisCount: 6,
+                  shrinkWrap: true,
+                  childAspectRatio: 0.63,
+                  mainAxisSpacing: 15.0,
+                  crossAxisSpacing: 15.0,
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: filteredProducts.map((product) {
+                    return SuggestionItemCard(
+                        crossAxixCount: 1, product: product);
+                  }).toList(),
+                );
+              }
+            })
             // SingleChildScrollView(
             //   scrollDirection: Axis.horizontal,
             //   child: Row(
@@ -188,19 +265,100 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(height: 40),
           const Text('Suggestion Item', style: TextStyle(fontSize: 18)),
           const SizedBox(height: 16),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: List.generate(suggestionList.length, (index) {
-                return Padding(
-                  padding:
-                      const EdgeInsets.only(right: 16.0), // Jarak antar item
-                  child: SuggestionItemCard(product: suggestionList[index]),
-                );
-              }),
-            ),
-          ),
+          LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+            if (constraints.maxWidth < 300) {
+              return SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: List.generate(suggestionList.length, (index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(
+                          right: 16.0), // Jarak antar item
+                      child: SuggestionItemCard(
+                          crossAxixCount: 1, product: suggestionList[index]),
+                    );
+                  }),
+                ),
+              );
+            } else if (constraints.maxWidth < 400) {
+              return SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: List.generate(suggestionList.length, (index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(
+                          right: 16.0), // Jarak antar item
+                      child: SuggestionItemCard(
+                          crossAxixCount: 2, product: suggestionList[index]),
+                    );
+                  }),
+                ),
+              );
+            } else if (constraints.maxWidth < 600) {
+              return SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: List.generate(suggestionList.length, (index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(
+                          right: 16.0), // Jarak antar item
+                      child: SuggestionItemCard(
+                          crossAxixCount: 3, product: suggestionList[index]),
+                    );
+                  }),
+                ),
+              );
+            } else if (constraints.maxWidth < 800) {
+              return SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: List.generate(suggestionList.length, (index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(
+                          right: 16.0), // Jarak antar item
+                      child: SuggestionItemCard(
+                          crossAxixCount: 4, product: suggestionList[index]),
+                    );
+                  }),
+                ),
+              );
+            } else if (constraints.maxWidth < 1000) {
+              return SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: List.generate(suggestionList.length, (index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(
+                          right: 16.0), // Jarak antar item
+                      child: SuggestionItemCard(
+                          crossAxixCount: 5, product: suggestionList[index]),
+                    );
+                  }),
+                ),
+              );
+            } else {
+              return SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: List.generate(suggestionList.length, (index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(
+                          right: 16.0), // Jarak antar item
+                      child: SuggestionItemCard(
+                          crossAxixCount: 6, product: suggestionList[index]),
+                    );
+                  }),
+                ),
+              );
+            }
+          }),
         ],
       ),
     );
@@ -209,16 +367,18 @@ class _HomeScreenState extends State<HomeScreen> {
 
 class SuggestionItemCard extends StatelessWidget {
   final Product product;
+  final int crossAxixCount;
 
-  const SuggestionItemCard({super.key, required this.product});
+  const SuggestionItemCard(
+      {super.key, required this.crossAxixCount, required this.product});
 
   @override
   Widget build(BuildContext context) {
     double rating = double.parse(product.rating); // Rating dari 0 - 5
-    double starFillRatio = rating / 5; // Rasio pengisian bintang
+    double starFillRatio = rating / 5;
 
     return Container(
-      width: MediaQuery.of(context).size.width / 2 - 28,
+      width: MediaQuery.of(context).size.width / crossAxixCount - 28,
       height: 250,
       decoration: BoxDecoration(
         color: Colors.grey[300],
@@ -250,7 +410,8 @@ class SuggestionItemCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16, vertical: 8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

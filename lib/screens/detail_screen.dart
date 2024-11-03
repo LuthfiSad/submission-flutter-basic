@@ -22,11 +22,19 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       body: SafeArea(
         child: Stack(
           children: [
-            Image.network(
-              widget.product.image,
-              width: double.infinity,
-              height: 300,
-              fit: BoxFit.cover,
+            Align(
+              alignment: Alignment.topCenter,
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(
+                  maxWidth: 400.0,
+                ),
+                child: Image.network(
+                  widget.product.image,
+                  width: double.infinity,
+                  height: 300,
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
 
             // Draggable Scrollable Sheet dengan auto snap ke min atau max size
@@ -164,7 +172,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                     ),
 
                                   // Tab Navigation for Description and Reviews
-                                      SizedBox(height: 8),
+                                  SizedBox(height: 8),
                                   Row(
                                     children: [
                                       _buildTabButton(
@@ -253,7 +261,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                     showDialog(
                                         context: context,
                                         builder: (builder) => AlertDialog(
-                                              title: Text("Masuk keranjang Berhasil"),
+                                              title: Text(
+                                                  "Masuk keranjang Berhasil"),
                                               actions: [
                                                 TextButton(
                                                   onPressed: () {

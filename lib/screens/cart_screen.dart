@@ -165,11 +165,12 @@ class CartItemWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(cartItem.product.title,
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
                     SizedBox(height: 4),
                     Text('Harga: ${cartItem.product.price}'),
+                    SizedBox(height: 4),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         IconButton(
                           style: IconButton.styleFrom(
