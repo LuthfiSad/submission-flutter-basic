@@ -1,5 +1,5 @@
 class Product {
-  final String idProduct, title, image, price, stock, rating;
+  final String idProduct, title, image, price, stock, rating, ratingCount;
   final List<String>? size;
   final List<Review>? review;
   final String? description;
@@ -11,6 +11,7 @@ class Product {
     required this.price,
     required this.stock,
     required this.rating,
+    required this.ratingCount,
     this.review,
     this.size,
     this.description,
@@ -37,6 +38,7 @@ List<Product> suggestionList = [
       price: '10.000',
       stock: '100',
       rating: '4.5',
+      ratingCount: '100',
       size: [
         'S',
         'M'
@@ -56,6 +58,7 @@ List<Product> suggestionList = [
             image: 'https://picsum.photos/id/10/200/300'),
       ]),
   Product(
+    ratingCount: '10',
     idProduct: '2',
     title: 'Sugerstion 2',
     image: 'https://picsum.photos/id/10/200/300',
@@ -64,6 +67,7 @@ List<Product> suggestionList = [
     rating: '4.0',
   ),
   Product(
+    ratingCount: '10',
     idProduct: '3',
     title: 'Sugerstion 3',
     image:
@@ -73,6 +77,7 @@ List<Product> suggestionList = [
     rating: '3.5',
   ),
   Product(
+    ratingCount: '10',
     idProduct: '4',
     title: 'Sugerstion 4',
     image: 'https://picsum.photos/id/10/200/300',
@@ -84,6 +89,7 @@ List<Product> suggestionList = [
 
 List<Product> productsList = [
   Product(
+    ratingCount: '10',
     idProduct: '1',
     title: 'Product 123456789abjsajdsadasdja jdjkandknaskd',
     image: 'https://picsum.photos/id/10/200/300',
@@ -92,6 +98,7 @@ List<Product> productsList = [
     rating: '4.5',
   ),
   Product(
+    ratingCount: '10',
     idProduct: '2',
     title: 'Product 2',
     image:
@@ -102,6 +109,7 @@ List<Product> productsList = [
     description: 'Product 2 description',
   ),
   Product(
+    ratingCount: '10',
     idProduct: '3',
     title: 'Product 3',
     image: 'https://picsum.photos/id/10/200/300',
@@ -110,6 +118,7 @@ List<Product> productsList = [
     rating: '3.5',
   ),
   Product(
+    ratingCount: '10',
     idProduct: '4',
     title: 'Product 4',
     image: 'https://picsum.photos/id/10/200/300',
@@ -119,6 +128,7 @@ List<Product> productsList = [
     description: 'Product 4 description',
   ),
   Product(
+      ratingCount: '10',
       idProduct: '5',
       title: 'Product 5',
       image:

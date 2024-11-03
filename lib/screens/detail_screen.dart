@@ -69,15 +69,59 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                       style: TextStyle(
                                           fontSize: 24,
                                           fontWeight: FontWeight.bold)),
+
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Stack(
+                                            children: [
+                                              Icon(Icons.star,
+                                                  size: 30,
+                                                  color: Colors.grey[400]),
+                                              ClipRect(
+                                                child: Align(
+                                                  alignment: Alignment.topLeft,
+                                                  widthFactor: double.parse(
+                                                          widget
+                                                              .product.rating) /
+                                                      5, // Mengisi bintang sesuai rating
+                                                  child: Icon(Icons.star,
+                                                      size: 30,
+                                                      color: Colors.yellow),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(width: 4),
+                                          Text(
+                                            '${double.parse(widget.product.rating)}/5.0',
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                          const SizedBox(width: 4),
+                                          Text(
+                                            '(${widget.product.ratingCount})',
+                                            // '(10)',
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Text("Stock: ${widget.product.stock}",
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              color: Colors.grey)),
+                                    ],
+                                  ),
                                   Text("Price: ${widget.product.price}",
                                       style: TextStyle(
-                                          fontSize: 18, color: Colors.green)),
-                                  Text("Stock: ${widget.product.stock}",
-                                      style: TextStyle(
-                                          fontSize: 16, color: Colors.grey)),
-                                  Text("Rating: ${widget.product.rating}",
-                                      style: TextStyle(
-                                          fontSize: 16, color: Colors.orange)),
+                                          fontSize: 24, color: Colors.green)),
 
                                   // Size Options with Active Animation
                                   if (widget.product.size != null)
@@ -136,9 +180,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                   if (activeTab == 'review' &&
                                       widget.product.review != null)
                                     ...widget.product.review!.map((rev) {
-                                      double rating = double.parse(
+                                      double ratingRev = double.parse(
                                           rev.rating); // Rating dari 0 - 5
-                                      double starFillRatio = rating / 5;
+                                      double starFillRatio = ratingRev / 5;
                                       return ListTile(
                                         title: Text(rev.username),
                                         leading: CircleAvatar(
@@ -176,7 +220,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                                 ),
                                                 const SizedBox(width: 4),
                                                 Text(
-                                                  '$rating/5.0',
+                                                  '$ratingRev/5.0',
                                                   style: const TextStyle(
                                                     fontSize: 12,
                                                     color: Colors.grey,
@@ -197,12 +241,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                   style: ElevatedButton.styleFrom(
                                     padding: EdgeInsets.all(16),
                                     backgroundColor: Colors.blue,
-                                      shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
                                   ),
                                   onPressed: () {},
-                                  child: Text("Add to cart", style: TextStyle(color: Colors.white)),
+                                  child: Text("Add to cart",
+                                      style: TextStyle(color: Colors.white)),
                                 ),
                               )
                             ],
@@ -214,7 +259,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 },
               ),
             ),
-            
+
             Positioned(
               top: 16,
               left: 16,

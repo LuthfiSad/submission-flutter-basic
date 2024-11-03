@@ -290,8 +290,8 @@ class SuggestionItemCard extends StatelessWidget {
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        // '(${product.ratingCount})',
-                        '(10)',
+                        '(${product.ratingCount})',
+                        // '(10)',
                         style: const TextStyle(
                           fontSize: 12,
                           color: Colors.grey,
