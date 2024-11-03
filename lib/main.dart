@@ -25,7 +25,8 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(255, 123, 255, 16),
+          onSurface: const Color.fromARGB(255, 37, 0, 117),
+          seedColor: Colors.white,
         ),
         textTheme: GoogleFonts.montserratTextTheme(),
         useMaterial3: true,

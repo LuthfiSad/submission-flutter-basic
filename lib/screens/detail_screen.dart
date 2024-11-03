@@ -26,7 +26,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               alignment: Alignment.topCenter,
               child: ConstrainedBox(
                 constraints: const BoxConstraints(
-                  maxWidth: 400.0,
+                  maxWidth: 500.0,
                 ),
                 child: Image.network(
                   widget.product.image,
@@ -58,6 +58,14 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       color: Colors.white,
                       borderRadius:
                           BorderRadius.vertical(top: Radius.circular(20)),
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 10,
+                          // spreadRadius: 2,
+                          color: Colors.black.withOpacity(0.3),
+                          offset: const Offset(0, -4),
+                        )
+                      ],
                     ),
                     child: SingleChildScrollView(
                       controller: scrollController,
@@ -154,7 +162,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                                 horizontal: 16, vertical: 8),
                                             decoration: BoxDecoration(
                                               color: isActive
-                                                  ? Colors.blue
+                                                  ? Theme.of(context).colorScheme.onSurface
                                                   : Colors.grey[200],
                                               borderRadius:
                                                   BorderRadius.circular(8),

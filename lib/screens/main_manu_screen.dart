@@ -132,7 +132,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
               color: currentPage == index
                   ? Theme.of(context).colorScheme.onSurface
                   : null,
-              border: Border.all(color: Colors.black, width: 3),
+              border: Border.all(color: Theme.of(context).colorScheme.onSurface, width: 3),
               shape: BoxShape.circle,
             ),
             child: Icon(
